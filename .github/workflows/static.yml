@@ -3,7 +3,7 @@ name: Deploy MkDocs
 on:
   push:
     branches:
-      - main  # 或你平时推送的分支
+      - main
 
 jobs:
   deploy:
@@ -15,10 +15,8 @@ jobs:
       id-token: write
 
     steps:
-      # 1. 拉代码
       - uses: actions/checkout@v4
 
-      # 2. 安装 Python & MkDocs
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
@@ -28,13 +26,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs-material
 
-      # 3. 构建 HTML
       - name: Build MkDocs site
         run: mkdocs build
 
-      # 4. 上传 artifact 给 Pages
+      # ✅ 注意这里升级到 v2
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./site
 
