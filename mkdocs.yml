@@ -1,5 +1,32 @@
-site_name: My Project Docs
-docs_dir: docs
-site_dir: site
+site_name: My Docs
+site_url: https://jiaqiw09.github.io/test_doc/ # 替换成你真实的 GitHub Pages URL
+
+# 1. 使用 Material 主题
 theme:
   name: material
+  features:
+    - navigation.instant # 推荐开启，页面加载更快
+    - navigation.tracking
+    - navigation.indexes
+  # 默认语言设为英文（界面语言）
+  language: en
+  # 2. 配置语言切换器（右上角的地球图标）
+  # mkdocs-static-i18n 插件会自动填充这里，但你需要预留这个字段
+  # 如果插件自动生成不生效，稍后我们可以手动配置
+  
+# 3. 插件配置（核心部分）
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder # 指定使用文件夹区分语言 (docs/en, docs/zh)
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true # 设置默认语言
+        - locale: zh
+          name: 简体中文
+          build: true
+
+# 4. 其他配置
+copyright: Copyright &copy; 2024 Your Name
